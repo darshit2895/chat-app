@@ -1,0 +1,25 @@
+.chat-container {
+    display: flex;
+    height: 100vh;
+}
+.user-list {
+    flex: 0 0 25%; /* 25% width for user list */
+    border-right: 1px solid #ddd;
+    overflow-y: auto; /* Enable vertical scroll */
+}
+.chat-window {
+    flex: 1; /* Take remaining width */
+    overflow-y: auto; /* Enable vertical scroll */
+}
+.chat{
+    display: none;
+}
+.user-image {
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    display: inline;
+}
+.cursour-pointer {
+    cursor: pointer;
+}
