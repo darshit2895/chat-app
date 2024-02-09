@@ -23,3 +23,8 @@
 .cursour-pointer {
     cursor: pointer;
 }
+.btn-primary{
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}

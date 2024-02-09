@@ -10,17 +10,29 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserStatusEvent implements ShouldBroadcast
+class MessageEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-
+    public $chatData;
+    public $sederName;
+    public $receiverName;
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($chatData, $sederName, $receiverName)
     {
+        $this->chatData = $chatData;
+        $this->sederName = $sederName;
+        $this->receiverName = $receiverName;
+    }
 
+    public function broadcastWith() {
+        return ['chat' => $this->chatData, 'sederName' => $this->sederName, 'ReceiverName' => $this->receiverName];
+    }
+
+    public function broadcastAs() {
+        return 'getChatMessage';
     }
 
     /**
@@ -31,7 +43,7 @@ class UserStatusEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PresenceChannel('status-update'),
+            new PrivateChannel('broadcast-message'),
         ];
     }
 }
